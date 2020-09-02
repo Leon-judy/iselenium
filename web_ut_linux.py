@@ -14,6 +14,7 @@ class ISelenium(unittest.TestCase):
     def get_config(self):
         config = configparser.ConfigParser()
         config.read(os.path.join(os.environ['HOME'], 'iselenium_linux.ini'))
+        print(os.environ['HOME'])
         return config
 
     def tearDown(self):
@@ -23,9 +24,11 @@ class ISelenium(unittest.TestCase):
         config = self.get_config()
 
         # 控制是否采用无界面形式运行自动化测试
+        print(os.environ["using_headless"])
         try:
             using_headless = os.environ["using_headless"]
         except KeyError:
+
             using_headless = None
             print('没有配置环境变量 using_headless, 按照有界面方式运行自动化测试')
 

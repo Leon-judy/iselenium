@@ -14,6 +14,7 @@ class ISelenium(unittest.TestCase):
     def get_config(self):
         config = configparser.ConfigParser()
         config.read(os.path.join(os.environ['HOME'], 'iselenium.ini'))
+
         return config
 
     def tearDown(self):
@@ -23,6 +24,7 @@ class ISelenium(unittest.TestCase):
         config = self.get_config()
 
         # 控制是否采用无界面形式运行自动化测试
+
         try:
             using_headless = os.environ["using_headless"]
         except KeyError:
@@ -59,6 +61,9 @@ class ISelenium(unittest.TestCase):
         self.driver.get("https://ww.baidu.com")
         print('打开浏览器，访问 www.baidu.com')
         time.sleep(5)
+        print("&&&&&&&&&&&&&&&&&&&&&")
+        print(os.environ['HOME'])
+        print(os.environ["using_headless"])
         assert f'百度一下' in self.driver.title
 
         elem = self.driver.find_element_by_name("wd")
