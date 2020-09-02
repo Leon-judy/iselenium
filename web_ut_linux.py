@@ -14,17 +14,20 @@ class ISelenium(unittest.TestCase):
     def get_config(self):
         config = configparser.ConfigParser()
         config.read(os.path.join(os.environ['HOME'], 'iselenium_linux.ini'))
-        print(os.environ['HOME'])
+
         return config
 
     def tearDown(self):
         self.driver.quit()
 
     def setUp(self):
+        print("&&&&&&&&&&&&&&&&&&&&&")
+        print(os.environ['HOME'])
+        print(os.environ["using_headless"])
         config = self.get_config()
 
         # 控制是否采用无界面形式运行自动化测试
-        print(os.environ["using_headless"])
+
         try:
             using_headless = os.environ["using_headless"]
         except KeyError:
